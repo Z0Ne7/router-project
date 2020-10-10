@@ -3,12 +3,12 @@ import { Route, Link } from 'react-router-dom';
 
 const menus = [
   {
-    name: 'Trang Chủ',
+    name: 'Trang chủ',
     to: '/',
     exact: true,
   },
   {
-    name: 'Quản Lý Sản Phẩm',
+    name: 'Sản phẩm',
     to: '/product-list',
     exact: false,
   },
@@ -20,7 +20,7 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
       path={to}
       exact={activeOnlyWhenExact}
       children={({ match }) => {
-        var active = match ? 'active' : '';
+        const active = match ? 'active' : '';
         return (
           <li className={active}>
             <Link to={to}>{label}</Link>
@@ -30,21 +30,12 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
     />
   );
 };
-
 class Menu extends Component {
-  render() {
-    return (
-      <div className="navbar navbar-default">
-        <a className="navbar-brand">CALL API</a>
-        <ul className="nav navbar-nav">{this.showMenus(menus)}</ul>
-      </div>
-    );
-  }
-
-  showMenus = menus => {
-    var result = null;
+  showMenu = () => {
+    let result = null;
     if (menus.length > 0) {
       result = menus.map((menu, index) => {
+        console.log(menu);
         return (
           <MenuLink
             key={index}
@@ -53,10 +44,22 @@ class Menu extends Component {
             activeOnlyWhenExact={menu.exact}
           />
         );
+        // MenuLink({
+        //   label: menu.name,
+        //   to: menu.to,
+        //   activeOnlyWhenExact: menu.exact,
+        // });
       });
     }
-    return result;
   };
+
+  render() {
+    return (
+      <div className="navbar navbar-default">
+        <ul className="nav navbar-nav">{this.showMenu(menus)}</ul>
+      </div>
+    );
+  }
 }
 
 export default Menu;
