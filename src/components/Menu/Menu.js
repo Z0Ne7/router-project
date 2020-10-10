@@ -51,6 +51,7 @@ class Menu extends Component {
         // });
       });
     }
+    return result;
   };
 
   render() {
