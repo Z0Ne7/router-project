@@ -35,7 +35,6 @@ class Menu extends Component {
     let result = null;
     if (menus.length > 0) {
       result = menus.map((menu, index) => {
-        console.log(menu);
         return (
           <MenuLink
             key={index}
@@ -44,11 +43,6 @@ class Menu extends Component {
             activeOnlyWhenExact={menu.exact}
           />
         );
-        // MenuLink({
-        //   label: menu.name,
-        //   to: menu.to,
-        //   activeOnlyWhenExact: menu.exact,
-        // });
       });
     }
     return result;
